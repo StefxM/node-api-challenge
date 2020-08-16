@@ -12,3 +12,16 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+
+const express = require('express');
+//const projects = require('./data/helpers/projectModel');
+//const action = require('./data/helpers/actionModel');
+const server = express();
+
+server.use(express.json())
+//server.use(projects);
+//server.use(action);
+
+server.listen(5000, () => {
+    console.log('server is running at http://localhost:5000')
+})
