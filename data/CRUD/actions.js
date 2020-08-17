@@ -2,25 +2,83 @@ const actiondb = require('../helpers/actionModel');
 const express = require('express');
 
 
+
+
 const router = express.Router();
 
-router.get('', (req,res) => {
-
+router.get('/api/actions', (req,res) => {
+    actiondb.get(req.id)
+        .then(actions =>
+            res.status(200).json(actions)
+        )
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({
+                message: "Cant bring back the actions"
+            })
+        })
 
 })
 
-router.post('', (req,res) => {
-
+router.get('/api/actions/:id', (req,res) => {
+    actiondb.get(req.params.id)
+        .then(actions =>
+            res.status(200).json(actions)
+        )
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({
+                message: "Cant bring back the actions"
+            })
+        })
 
 })
 
-router.put('', (req,res) => {
+//all good
+router.post('/api/actions', (req,res) => {
+    actiondb.insert(req.body)
+    .then((id) => {
+        res.status(201).json(id)
+    })
+    .catch((error) => {
+        console.log(error)
+        res.status(500).json({
+            message: "Theres an error saving action"
+        })
+    })
 
-    
+})
+//done
+router.put('/api/actions/:id', (req,res) => {
+    actiondb.update(req.params.id, req.body)
+        .then((actions) => {
+            if (actions) {
+                res.status(200).json(actions)
+            } else {
+                res.status(404).json({
+                    message: "Action doesnt exist"
+                })
+            }
+        })
+        .catch(error => console.log(error))
 })
 
-router.delete('', (req,res) => {
 
+//all good
+router.delete('/api/actions/:id', (req,res) => {
+    actiondb.remove(req.params.id)
+        .then((count) => {
+            if (count > 0) {
+                res.status(200).json({
+                    message: "Action has been deleted"
+                })
+            } else {
+                res.status(404).json({
+                    message: "Error removing action"
+                })
+            }
+        })
+        .catch(error => console.log(error))
     
 })
 
