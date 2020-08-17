@@ -49,7 +49,7 @@ router.post('/api/actions', (req,res) => {
 
 })
 //done
-router.put('/api/actions/:id', (req,res) => {
+router.put('/api/actions/:id',checkActions(), (req,res) => {
     actiondb.update(req.params.id, req.body)
         .then((actions) => {
             if (actions) {
@@ -82,6 +82,28 @@ router.delete('/api/actions/:id', (req,res) => {
     
 })
 
+
+function checkActions() {
+    return (req,res,next) => {
+        actiondb.get(req.params.id)
+        .then(actions => {
+           if (actions) {
+               next()
+           } else {
+            res.status(404).json({
+                message: "Cant find"
+            })
+           }
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({
+                message: "Cant bring back the actions"
+            })
+        })
+        
+    }
+}
 
 module.exports = router;
 /*

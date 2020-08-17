@@ -9,9 +9,9 @@ router.get('/api/project', (req,res) => {
     .then(projects => res.status(200).json(projects))
     .catch(error => console.log(error))
 })
-//idk
+//good
 router.get('/api/project/:id', (req,res) => {
-    projectdb.get(req.params.project_id)
+    projectdb.get(req.params.id)
     .then(projects => res.status(200).json(projects))
     .catch(error => console.log(error))
 })
@@ -63,6 +63,18 @@ router.delete('/api/project/:id', (req,res) => {
     
 })
 
+router.get('/api/project/:project_id/actions', (req,res) => {
+    projectdb.getProjectActions(req.params.project_id)
+        .then(actions =>
+            res.status(200).json(actions)
+        )
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({
+                message: "Cant bring back the actions"
+            })
+        })
+})
 
 
 module.exports = router;
