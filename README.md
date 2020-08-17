@@ -38,15 +38,15 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
--   [ ] Mention two parts of Express that you learned about this week.
+-   [ ] Mention two parts of Express that you learned about this week. Express lets us build smaller routers and use middleware to organize our code better.
 
--   [ ] Describe Middleware?
+-   [ ] Describe Middleware? Functions that we can use into the endpoints that can help us DRY up our code.
 
--   [ ] Describe a Resource?
+-   [ ] Describe a Resource? The data we are recieving from the API
 
--   [ ] What can the API return to help clients know if a request was successful?
+-   [ ] What can the API return to help clients know if a request was successful? A 201 status , meaning the action was done correctly
 
--   [ ] How can we partition our application into sub-applications?
+-   [ ] How can we partition our application into sub-applications? By using express to make server routers.
 
 ## Minimum Viable Product
 
@@ -56,6 +56,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 Design and build the necessary endpoints to:
 
 -   [ ] Perform CRUD operations on _projects_ and _actions_. When adding an action, make sure the `project_id` provided belongs to an existing `project`. If you try to add an action with an `id` of 3 and there is no project with that `id` the database will return an error.
+
 -   [ ] Retrieve the list of actions for a project.
 
 Please read the following sections before implementing the Minimum Viable Product, they describe how the database is structured and the files and methods available for interacting with the data.
